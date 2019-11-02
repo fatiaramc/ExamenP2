@@ -26,6 +26,7 @@ namespace Examen.Controllers
             return Content(response);*/
             /*IProxyPais proxy = new ProxyPais();
             var r = proxy.city();*/
+            UsuarioGen.Update();
             return View();
         }
 

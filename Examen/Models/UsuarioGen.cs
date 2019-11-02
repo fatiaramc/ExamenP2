@@ -52,10 +52,12 @@ namespace Examen.Models
             return user.id;
         }
 
-        public void Update()
+        public static void Update()
         {
             _usuariogen = new UsuarioGen();
-            RedirectToAction("Index");
+            citiesAdded = new CitiesAdded();
+            caretaker = new Caretaker(citiesAdded);
+            citiesBD = new List<string>();
             return;
 
         }
