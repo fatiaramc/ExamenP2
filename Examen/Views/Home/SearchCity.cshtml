@@ -1,16 +1,46 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Content/style.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+@model Examen.Models.WeatherObject
 
+<script type="text/javascript">
+	$(function () {
+		$("#txtSearch").autocomplete({
+			source: '@Url.Action("GetCities")'
+		});
+	});
+</script>
 <div class="box" style="max-width:500px; position:absolute; left: 50%; top: 50%; transform:translate(-50%,-50%)">
 	<h1>Search Cities</h1>
 	<div>
-		<div class="input">
-			<input type="text" placeholder="Search City" name="city" id="city">
+		@using (Html.BeginForm())
+		{
+			/*@Html.TextBox("searchTerm", null, new { id = "txtSearch" })*/
+			<!--<input list="@Url.Action("GetCities")" id="txtSearch" title="type &quot;a&quot;">
+			<input type="text" placeholder="Search City" name="city" id="city">-->
+		<form class="box" action="@Url.Action("OnSearchCity")" method="post">
+			@Html.TextBox("searchTerm", null, new { id = "txtSearch" })
 			<span class="spin"></span>
-		</div>
-		<div class="row	button login" style="border-radius:12px; height:auto; padding:5pt;">
-			<button style="border-radius:12px;"><span>Add city</span> <i class="fa glyphicon-plus"></i></button>
-		</div>
+			<div class="row	button login" style="border-radius:12px; height:auto; padding:5pt;">
+				<button style="border-radius:12px;"><span>Add city</span> <i class="fa glyphicon-plus"></i></button>
+			</div>
+		</form>
+			
+		}
+
 	</div>
-	
+	@if (Model.name != null)
+	{
+		<div class="box">
+			<h2>@Model.name</h2>
+			<label>@Model.main.temp</label>
+			<label>@Model.main.</label>
+			<img src=$"http://openweathermap.org/img/wn/"@Model.weather[0].icon"10d@2x.png"/>
+		</div>		
+	}
+
 </div>
+

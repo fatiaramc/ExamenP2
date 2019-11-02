@@ -15,6 +15,7 @@ namespace Examen.Controllers
     {
         private readonly DataService _dataService = DataService.GetDataService();
         private UsuarioGen _user = UsuarioGen.GetUsuarioGen();
+        List<string> cities;
 
         public ActionResult Index()
         {
@@ -23,15 +24,14 @@ namespace Examen.Controllers
             var r =proxy.weather("ABUJA").main.temp;
             var response = "" + r;
             return Content(response);*/
-            IProxyPais proxy = new ProxyPais();
-            var r = proxy.city();
+            /*IProxyPais proxy = new ProxyPais();
+            var r = proxy.city();*/
             return View();
         }
 
         public ActionResult Signup()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
@@ -76,7 +76,44 @@ namespace Examen.Controllers
 
         public ActionResult SearchCity()
         {
-            return View();
+            IProxyPais proxy = new ProxyPais();
+            cities = proxy.city();
+            return View(new WeatherObject());
+        }
+
+        [HttpPost]
+        public ActionResult OnSearchCity(string searchTerm)
+        {
+            WeatherObject r = null;
+            if (cities.Contains(searchTerm))
+            {
+                IProxy proxy = new Proxy();
+                r = proxy.weather(searchTerm);
+            }
+            return View(r);
+        }
+
+        /*[HttpPost]
+        public ActionResult SearchCity(string searchTerm)
+        {
+            IProxyPais proxy = new ProxyPais();
+            cities = proxy.city();
+            List<string> result = new List<string>();
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                result = cities;
+            }
+            else
+            {
+                var q= cities.Where(x => x.StartsWith(searchTerm));
+            }
+            return View(result);
+        }*/
+        public JsonResult GetCities(string term)
+        {
+            List<string> result;
+            result = cities.Where(x => x.StartsWith(term)).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
         public ActionResult RegisterUser(string name, string email, string pass)
         {
