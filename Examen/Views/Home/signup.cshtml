@@ -1,0 +1,38 @@
+﻿@{
+	ViewBag.Title = "Signup";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+<div class="materialContainer">
+
+	<div class="box">
+
+		<div class="title">SIGNUP</div>
+
+		<div class="input">
+			<label for="name">Username</label>
+			<input type="text" name="name" id="name">
+			<span class="spin"></span>
+		</div>
+
+		<div class="input">
+			<label for="regemail">Email</label>
+			<input type="text" name="regemail" id="regemail">
+			<span class="spin"></span>
+		</div>
+
+		<div class="input">
+			<label for="pass">Password</label>
+			<input type="password" name="pass" id="pass">
+			<span class="spin"></span>
+		</div>
+
+		<div class="button login">
+			<button><span>GO</span> <i class="fa fa-check"></i></button>
+		</div>
+		<div class="box" style="padding:unset; position:center; align-self: center">
+			<a href="" class="pass-forgot">@Html.ActionLink("Already have an account? Log in", "Index")</a>
+		</div>
+
+
+	</div>
+</div>
