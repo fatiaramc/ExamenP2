@@ -71,14 +71,39 @@ namespace Examen.Controllers
         [HttpPost]
         public ActionResult AddCity()
         {
-            return View("SearchCity");
+            return Content("SearchCity");
         }
 
-        public ActionResult SearchCity()
+        [HttpPost]
+        public ActionResult SearchCity(string searchTerm)
         {
-            IProxyPais proxy = new ProxyPais();
+            var q = Request.Form["searchTerm"];
+            /*IProxyPais proxy = new ProxyPais();
             cities = proxy.city();
-            return View(new WeatherObject());
+            WeatherObject r = null;
+            if (cities.Contains(searchTerm))
+            {
+                IProxy proxy2 = new Proxy();
+                r = proxy2.weather(searchTerm);
+            }
+            return View(r,cities);*/
+            //imaginamos que despues queremos implementar busquedas por otro valor
+
+            //string sText = drop.Itemes[Select.SelectedIndex].Text;
+
+            Busqueda b = new BusquedaCiudad();
+            b.getOpciones();
+            b.getResultado(searchTerm);
+            if(b.resultado.weather !=null)
+                ViewBag.Image = "http://openweathermap.org/img/wn/"+ b.resultado.weather[0].icon + "@2x.png";
+
+            return View(b);
+        }
+
+
+        protected void searchTerm_ServerChange(object sender, EventArgs e)
+        {
+            Response.Write("boo");
         }
 
         [HttpPost]

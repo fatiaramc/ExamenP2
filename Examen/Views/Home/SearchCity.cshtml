@@ -4,7 +4,7 @@
 <script src="~/Scripts/jquery-ui.js"></script>
 <script src="~/Scripts/jquery-ui.min.js"></script>
 <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
-@model Examen.Models.WeatherObject
+@model Examen.Models.Busqueda
 
 <script type="text/javascript">
 	$(function () {
@@ -18,28 +18,40 @@
 	<div>
 		@using (Html.BeginForm())
 		{
-			/*@Html.TextBox("searchTerm", null, new { id = "txtSearch" })*/
-			<!--<input list="@Url.Action("GetCities")" id="txtSearch" title="type &quot;a&quot;">
-			<input type="text" placeholder="Search City" name="city" id="city">-->
-		<form class="box" action="@Url.Action("OnSearchCity")" method="post">
-			@Html.TextBox("searchTerm", null, new { id = "txtSearch" })
-			<span class="spin"></span>
-			<div class="row	button login" style="border-radius:12px; height:auto; padding:5pt;">
-				<button style="border-radius:12px;"><span>Add city</span> <i class="fa glyphicon-plus"></i></button>
-			</div>
-		</form>
-			
-		}
+			<form class="box" action="@Url.Action("OnSearchCity")" method="post">
+				@Html.TextBox("searchTerm", null, new { id = "txtSearch" })
+				<span class="spin"></span>
+				<div class="row	button login" style="border-radius:12px; height:auto; padding:5pt;">
+					<button style="border-radius:12px;"><span>Search city</span> <i class="fa glyphicon-plus"></i></button>
+				</div>	
+			</form>
 
+		}
 	</div>
-	@if (Model.name != null)
+	@if (Model.resultado.name != null)
 	{
-		<div class="box">
-			<h2>@Model.name</h2>
-			<label>@Model.main.temp</label>
-			<label>@Model.main.</label>
-			<img src=$"http://openweathermap.org/img/wn/"@Model.weather[0].icon"10d@2x.png"/>
-		</div>		
+	<form class="box" style="text-align:center" action="@Url.Action("AddCity")" method="post">
+		<h2>@Model.resultado.name</h2>
+		<img style="width: 260px; height: 260px" src="@ViewBag.Image" />
+		<h1>@Model.resultado.main.temp °</h1>
+		<h3>@Model.resultado.weather[0].main</h3>
+		<div class="row">
+			<div class="col" style="float:left; padding-left:70pt">
+				<h4 style="color:greenyellow"><i class="glyphicon glyphicon-chevron-down"></i></h4>
+				<h4>@Model.resultado.main.temp_min</h4>
+				<label style="color:greenyellow">Min</label>
+			</div>
+			<div class="col" style="float:right; padding-right:70pt">
+				<h4 style="color:red"><i class="glyphicon glyphicon-chevron-up"></i></h4>
+				<h4>@Model.resultado.main.temp_max</h4>
+				<label style="color:red">Max</label>
+			</div>
+		</div>
+		<span class="spin"></span>
+		<div class="row	button login" style="border-radius:12px; height:auto; padding:5pt;">
+			<button style="border-radius:12px;"><span>Add city</span> <i class="fa glyphicon-plus"></i></button>
+		</div>
+	</form>		
 	}
 
 </div>

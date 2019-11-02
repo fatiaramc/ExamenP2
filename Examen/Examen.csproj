@@ -131,6 +131,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Busqueda.cs" />
+    <Compile Include="Models\BusquedaCiudad.cs" />
+    <Compile Include="Models\Caretaker.cs" />
+    <Compile Include="Models\CitiesAdded.cs" />
+    <Compile Include="Models\ConcreteMemento.cs" />
+    <Compile Include="Models\IMemento.cs" />
     <Compile Include="Models\IProxy.cs" />
     <Compile Include="Models\IProxyMaster.cs" />
     <Compile Include="Models\IProxyPais.cs" />
@@ -139,6 +145,7 @@
     <Compile Include="Models\UsuarioGen.cs" />
     <Compile Include="Models\Weather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Home\AddCity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
