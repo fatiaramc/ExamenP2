@@ -3,21 +3,37 @@
 }
 <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-@if (Model.Count == 0)
-{
-	<form action="@Url.Action("SearchCity")" method="post" class="box" style="max-width:500px; position:absolute; left: 50%; top: 50%; transform:translate(-50%,-50%)">
+@model Examen.Models.CitiesAdded
+
+	<form action="@Url.Action("SearchCity")" method="post" class="box" style="max-width:500px;">
 		<div class="row	button login" style="border-radius:12px; height:auto; padding:5pt">
 			<button style="border-radius:12px;"><span>Add city</span> <i class="fa glyphicon-plus"></i></button>
 		</div>
 		<div class="row" style="background-image: url('../../Content/imagecity.jpg'); background-repeat:no-repeat; background-position: center bottom; padding:100pt">
 		</div>
 	</form>
-}
-else
-{
-	foreach (string tag in Model)
+	@foreach (var i in Model.GetWeathers())
 	{
-		<h2>@tag</h2>
+		<form class="box" style="text-align:center; max-width:400px; display:inline-block" action="@Url.Action("ViewMore",i)" method="post">
+			<h2>@i.name</h2>
+			<h1>@i.main.temp °</h1>
+			<h3>@i.weather[0].main</h3>
+			<div class="row">
+				<div class="col" style="float:left; padding-left:70pt">
+					<h4 style="color:greenyellow"><i class="glyphicon glyphicon-chevron-down"></i></h4>
+					<h4>@i.main.temp_min</h4>
+					<label style="color:greenyellow">Min</label>
+				</div>
+				<div class="col" style="float:right; padding-right:70pt">
+					<h4 style="color:red"><i class="glyphicon glyphicon-chevron-up"></i></h4>
+					<h4>@i.main.temp_max</h4>
+					<label style="color:red">Max</label>
+				</div>
+			</div>
+			<div class="row	button login" style="border-radius:12px; height:auto; padding:5pt;">
+				<button style="border-radius:12px;"><span>View more</span> <i class="fa glyphicon-plus"></i></button>
+			</div>
+		</form>
 	}
 
 }

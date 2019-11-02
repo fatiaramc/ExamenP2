@@ -399,3 +399,9 @@ html {
 	list-style-type: none;
 	outline: none;
 }
+
+scroll {
+	overflow-x: scroll;
+	width: auto;
+	white-space: nowrap;
+}

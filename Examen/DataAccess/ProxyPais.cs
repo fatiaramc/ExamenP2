@@ -8,16 +8,21 @@ using System.Web;
 
 namespace Examen.DataAccess
 {
-    public class ProxyPais : IProxyPais
+    public class ProxyPais : IProxyMaster
     {
         private RestClient _client;
 
         public ProxyPais()
         {
+            //_client = new RestClient("https://restcountries.eu/rest/v2/all");
+        }
+
+        public override void IniciarApi()
+        {
             _client = new RestClient("https://restcountries.eu/rest/v2/all");
         }
 
-        public List<string> city()
+        public override List<string> city()
         {
             List<string> result = new List<string>();
             var request = new RestRequest();
@@ -34,6 +39,16 @@ namespace Examen.DataAccess
             return result;
             //var response = _client.Get<PaisObject>(request);
             //return response.Data;
+        }
+
+        public override WeatherObject weather(string ciudad)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override ForecastObject forecast(string ciudad)
+        {
+            throw new NotImplementedException();
         }
     }
 }

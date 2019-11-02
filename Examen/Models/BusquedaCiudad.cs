@@ -14,7 +14,8 @@ namespace Examen.Models
 
         public override List<string> getOpciones()
         {
-            IProxyPais proxy = new ProxyPais();
+            IProxyMaster proxy = new ProxyPais();
+            proxy.IniciarApi();
             opciones = proxy.city();
             return opciones;
         }
@@ -24,7 +25,8 @@ namespace Examen.Models
             resultado = new WeatherObject();
             if (opciones.Contains(searchTerm))
             {
-                IProxy proxy2 = new Proxy();
+                IProxyMaster proxy2 = new Proxy();
+                proxy2.IniciarApi();
                 resultado = proxy2.weather(searchTerm);
             }
             return resultado;

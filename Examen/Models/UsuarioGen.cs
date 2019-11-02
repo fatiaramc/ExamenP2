@@ -1,16 +1,19 @@
-﻿using System;
+﻿using Examen.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Examen.Models
 {
-    public class UsuarioGen
+    public class UsuarioGen : Controller
     {
         public static UsuarioGen _usuariogen;
         public static User user;
         public static CitiesAdded citiesAdded = new CitiesAdded();
         public static Caretaker caretaker = new Caretaker(citiesAdded);
+        public static List<string> citiesBD = new List<string>();
 
         private UsuarioGen()
         {
@@ -36,11 +39,25 @@ namespace Examen.Models
             user.id = u.id;
             user.username = u.username;
             user.email = u.email;
+            citiesBD = DataService.GetDataService().getCities(user.id);
+        }
+
+        public static void updateCitiesBD()
+        {
+            citiesBD = DataService.GetDataService().getCities(user.id);
         }
 
         public int GetUserID()
         {
             return user.id;
+        }
+
+        public void Update()
+        {
+            _usuariogen = new UsuarioGen();
+            RedirectToAction("Index");
+            return;
+
         }
     }
 }

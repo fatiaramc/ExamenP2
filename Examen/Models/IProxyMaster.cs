@@ -8,6 +8,9 @@ namespace Examen.Models
 {
     public abstract class IProxyMaster
     {
-        private RestClient _client;
+        public abstract void IniciarApi();
+        public abstract WeatherObject weather(string ciudad);
+        public abstract ForecastObject forecast(string ciudad);
+        public abstract List<string> city();
     }
 }

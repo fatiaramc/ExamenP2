@@ -39,7 +39,8 @@ namespace Examen.Controllers
         {
             //ViewBag.Message = "Your contact page.";
             var result = _dataService.getCities(_user.GetUserID());
-            return View(result);
+            var q = UsuarioGen.citiesAdded;
+            return View(q);
         }
 
         [HttpPost]
@@ -71,10 +72,15 @@ namespace Examen.Controllers
         [HttpPost]
         public ActionResult AddCity(WeatherObject w)
         {
-            UsuarioGen.caretaker.Backup();
-            UsuarioGen.citiesAdded.AddCity(w.name);
+            if (!UsuarioGen.citiesBD.Contains(w.name))
+            {
+                UsuarioGen.caretaker.Backup();
+                UsuarioGen.citiesAdded.AddCity(w.name);
+                _dataService.addCity(UsuarioGen.GetUsuarioGen().GetUserID(), w.name);
+                UsuarioGen.updateCitiesBD();
+            }
             var q = UsuarioGen.citiesAdded;
-            q.GetImages();
+            //q.GetImages();
             return View(q);
             //return View();
         }
@@ -116,10 +122,22 @@ namespace Examen.Controllers
             WeatherObject r = null;
             if (cities.Contains(searchTerm))
             {
-                IProxy proxy = new Proxy();
+                IProxyMaster proxy = new Proxy();
+                proxy.IniciarApi();
                 r = proxy.weather(searchTerm);
             }
             return View(r);
+        }
+
+        [HttpPost]
+        public ActionResult ViewMore(WeatherObject w)
+        {
+            IProxyMaster prox = new Proxy();
+            prox.IniciarApi();
+            var k = prox.forecast(w.name);
+            if (w.weather != null)
+                ViewBag.Image = "http://openweathermap.org/img/wn/" + k.list[0].weather[0].icon + "@2x.png";
+            return View(k);
         }
 
         /*[HttpPost]

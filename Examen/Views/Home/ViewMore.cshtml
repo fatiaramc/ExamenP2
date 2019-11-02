@@ -1,0 +1,33 @@
+﻿<link href="~/Content/style.css" rel="stylesheet" />
+@model Examen.Models.ForecastObject
+
+<form class="box modal-scrollbar-measure" style="text-align:center; min-height: 1200px">
+	<h1>@Model.city.name</h1>
+	<img style="width: 260px; height: 260px" src="@ViewBag.Image" />
+	<h1>@Model.list[0].main.temp °</h1>
+	<h2>Humidity: @Model.list[0].main.humidity</h2>
+	<h2>Wind: @Model.list[0].wind.speed</h2>
+	<h3>@Model.list[0].weather[0].main</h3>
+
+	@{int i = 0;}
+	@foreach (var item in Model.list.Take(5))
+	{
+		{i++;
+		}
+		<div class="row">
+			<div>
+				<h4>@DateTime.Now.AddDays(@i)</h4>
+			</div>
+			<div class="col" style="float:left; padding-left:270pt">
+				<h4 style="color:greenyellow"><i class="glyphicon glyphicon-chevron-down"></i></h4>
+				<h4>@item.main.temp_min</h4>
+				<label style="color:greenyellow">Min</label>
+			</div>
+			<div class="col" style="float:right; padding-right:270pt">
+				<h4 style="color:red"><i class="glyphicon glyphicon-chevron-up"></i></h4>
+				<h4>@item.main.temp_max</h4>
+				<label style="color:red">Max</label>
+			</div>
+		</div>	
+	}
+</form>		

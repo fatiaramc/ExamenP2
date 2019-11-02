@@ -14,7 +14,7 @@ namespace Examen.Models
 
         public CitiesAdded()
         {
-            _cities = new List<string>();
+            _cities = DataService.GetDataService().getCities(UsuarioGen.GetUsuarioGen().GetUserID());
         }
 
         public void AddCity(string city)
@@ -28,26 +28,28 @@ namespace Examen.Models
             return _cities;
         }
 
-        public void GetWeathers()
+        public List<WeatherObject> GetWeathers()
         {
+            weathers = new List<WeatherObject>();
             foreach(var i in _cities)
             {
-                IProxy proxy2 = new Proxy();
+                IProxyMaster proxy2 = new Proxy();
+                proxy2.IniciarApi();
                 var r = proxy2.weather(i);
                 weathers.Add(r);
             }
-            //return weathers;
+            return weathers;
             
         }
 
-        public void GetImages()
+        /*public void GetImages()
         {
             foreach(var i in weathers)
             {
                 images.Add(i.name,"http://openweathermap.org/img/wn/" + i.weather[0].icon + "@2x.png");
             }
             //return images;
-        }
+        }*/
 
         public IMemento Save()
         {

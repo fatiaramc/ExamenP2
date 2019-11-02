@@ -136,6 +136,7 @@
     <Compile Include="Models\Caretaker.cs" />
     <Compile Include="Models\CitiesAdded.cs" />
     <Compile Include="Models\ConcreteMemento.cs" />
+    <Compile Include="Models\Forecast.cs" />
     <Compile Include="Models\IMemento.cs" />
     <Compile Include="Models\IProxy.cs" />
     <Compile Include="Models\IProxyMaster.cs" />
@@ -197,6 +198,7 @@
     <Content Include="Views\Home\signup.cshtml" />
     <Content Include="Views\Home\SearchCity.cshtml" />
     <Content Include="Views\Home\AddCity.cshtml" />
+    <Content Include="Views\Home\ViewMore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

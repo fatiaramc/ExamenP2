@@ -80,3 +80,20 @@ begin catch
 	set @haserror=1;
 end catch
 go
+
+create procedure addcity
+(
+	@idUser int,
+	@city nvarchar(50),
+	@haserror bit out
+)
+as
+begin try
+	set @haserror = 0;
+	insert into cities
+	values( @idUser,@city)
+end try
+begin catch
+	set @haserror=1;
+end catch
+go

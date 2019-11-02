@@ -7,28 +7,54 @@ using System.Web;
 
 namespace Examen.DataAccess
 {
-    public class Proxy : IProxy
+    public class Proxy : IProxyMaster
     {
         private RestClient _client;
-        private string appid = "b1e34d4d55487b41db609a28e5854900";
+        private string appid = "807e039bd90c3a40ac224637ffd000fb";
         private string metric = "metric";
 
         public Proxy()
         {
+            //_client = new RestClient("http://api.openweathermap.org/data/2.5/");
+        }
+
+        public override List<string> city()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void IniciarApi()
+        {
+            //throw new NotImplementedException();
             _client = new RestClient("http://api.openweathermap.org/data/2.5/");
         }
 
-        public WeatherObject weather(string ciudad)
+        /*public WeatherObject weather(string ciudad)
         {
+           var request = new RestRequest($"weather?q={ciudad}&APPID={appid}&units={metric}");
+            var response = _client.Get<WeatherObject>(request);
+            return response.Data;
+        }*/
+
+        public override WeatherObject weather(string ciudad)
+        {
+            //throw new NotImplementedException();
             var request = new RestRequest($"weather?q={ciudad}&APPID={appid}&units={metric}");
             var response = _client.Get<WeatherObject>(request);
             return response.Data;
         }
-        /*public string weather(string ciudad)
+        public override ForecastObject forecast(string ciudad)
         {
-            var request = new RestRequest($"weather?q={ciudad}&APPID={appid}&units={metric}");
-            var response = _client.Get(request);
-            return response.Content;
-        }*/
+            //throw new NotImplementedException();
+            var request = new RestRequest($"forecast?q={ciudad}&APPID={appid}&units={metric}");
+            var response = _client.Get<ForecastObject>(request);
+            return response.Data;
+        }
+        /*public string weather(string ciudad)
+{
+   var request = new RestRequest($"weather?q={ciudad}&APPID={appid}&units={metric}");
+   var response = _client.Get(request);
+   return response.Content;
+}*/
     }
 }
