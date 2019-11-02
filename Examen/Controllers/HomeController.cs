@@ -69,9 +69,19 @@ namespace Examen.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCity()
+        public ActionResult AddCity(WeatherObject w)
         {
-            return Content("SearchCity");
+            UsuarioGen.caretaker.Backup();
+            UsuarioGen.citiesAdded.AddCity(w.name);
+            var q = UsuarioGen.citiesAdded;
+            q.GetImages();
+            return View(q);
+            //return View();
+        }
+
+        public ActionResult City()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -98,12 +108,6 @@ namespace Examen.Controllers
                 ViewBag.Image = "http://openweathermap.org/img/wn/"+ b.resultado.weather[0].icon + "@2x.png";
 
             return View(b);
-        }
-
-
-        protected void searchTerm_ServerChange(object sender, EventArgs e)
-        {
-            Response.Write("boo");
         }
 
         [HttpPost]

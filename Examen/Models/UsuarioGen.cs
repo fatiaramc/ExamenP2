@@ -9,6 +9,8 @@ namespace Examen.Models
     {
         public static UsuarioGen _usuariogen;
         public static User user;
+        public static CitiesAdded citiesAdded = new CitiesAdded();
+        public static Caretaker caretaker = new Caretaker(citiesAdded);
 
         private UsuarioGen()
         {
@@ -28,7 +30,7 @@ namespace Examen.Models
             }
             return _usuariogen;
         }
-        
+
         public static void ChangeUser(User u)
         {
             user.id = u.id;

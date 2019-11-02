@@ -30,7 +30,7 @@
 	</div>
 	@if (Model.resultado.name != null)
 	{
-	<form class="box" style="text-align:center" action="@Url.Action("AddCity")" method="post">
+	<form class="box" style="text-align:center" action="@Url.Action("AddCity",Model.resultado)" method="post">
 		<h2>@Model.resultado.name</h2>
 		<img style="width: 260px; height: 260px" src="@ViewBag.Image" />
 		<h1>@Model.resultado.main.temp °</h1>
