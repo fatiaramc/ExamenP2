@@ -46,6 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RestSharp, Version=106.6.10.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.6.10\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -121,9 +124,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DataAccess\DataService.cs" />
+    <Compile Include="DataAccess\Proxy.cs" />
+    <Compile Include="DataAccess\ProxyPais.cs" />
+    <Compile Include="DataAccess\SqlClient.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\IProxy.cs" />
+    <Compile Include="Models\IProxyPais.cs" />
+    <Compile Include="Models\Pais.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UsuarioGen.cs" />
+    <Compile Include="Models\Weather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +144,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\imagecity.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -161,13 +175,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\signup.cshtml" />
+    <Content Include="Views\Home\SearchCity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

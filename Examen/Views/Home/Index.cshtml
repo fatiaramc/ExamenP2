@@ -4,30 +4,26 @@
 }
 <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
 <div class="materialContainer">
+	<!--Check this because it only works once-->
+		<form class="box" action="@Url.Action("SetUSer")" method="post">
+			<div class="title">LOGIN</div>
+			<div class="input">
+				<input type="text" placeholder="Username" name="name" id="name">
+				<span class="spin"></span>
+			</div>
 
-	<div class="box">
+			<div class="input">
+				<input type="password" placeholder="Password" name="pass" id="pass">
+				<span class="spin"></span>
+			</div>
 
-		<div class="title">LOGIN</div>
+			<div class="button login">
+				<button><span>GO</span> <i class="fa fa-check"></i></button>
+				<!--<input type="submit" value="Go"/>-->
+			</div>
+			<div class="box" style="padding:unset; position:center; align-self: center">
+				<a href="" class="pass-forgot">@Html.ActionLink("Don't have an account? Sign up", "Signup")</a>
+			</div>
 
-		<div class="input">
-			<label for="name">Username</label>
-			<input type="text" name="name" id="name">
-			<span class="spin"></span>
-		</div>
-
-		<div class="input">
-			<label for="pass">Password</label>
-			<input type="password" name="pass" id="pass">
-			<span class="spin"></span>
-		</div>
-
-		<div class="button login">
-			<button><span>GO</span> <i class="fa fa-check"></i></button>
-		</div>
-		<div class="box" style="padding:unset; position:center; align-self: center">
-			<a href="" class="pass-forgot">@Html.ActionLink("Don't have an account? Sign up", "Signup")</a>
-		</div>
-
-
-	</div>
+		</form>
 </div>

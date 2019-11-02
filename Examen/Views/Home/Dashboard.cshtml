@@ -1,0 +1,26 @@
+﻿@{
+	ViewBag.Title = "Dashboard";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@if (Model.Count == 0)
+{
+	<form action="@Url.Action("SearchCity")" method="post" class="box" style="max-width:500px; position:absolute; left: 50%; top: 50%; transform:translate(-50%,-50%)">
+		<div class="row	button login" style="border-radius:12px; height:auto; padding:5pt">
+			<button style="border-radius:12px;"><span>Add city</span> <i class="fa glyphicon-plus"></i></button>
+		</div>
+		<div class="row" style="background-image: url('../../Content/imagecity.jpg'); background-repeat:no-repeat; background-position: center bottom; padding:100pt">
+		</div>
+	</form>
+}
+else
+{
+	foreach (string tag in Model)
+	{
+		<h2>@tag</h2>
+	}
+
+}
+
+
+
